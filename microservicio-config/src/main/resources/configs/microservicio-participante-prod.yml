@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:?Variable DB_HOST es OBLIGATORIA}:${DB_PORT:?Variable DB_PORT es OBLIGATORIA}/${DB_NAME:?Variable DB_NAME es OBLIGATORIA}
+    username: ${DB_USER:?Variable DB_USER es OBLIGATORIA}
+    password: ${DB_PASSWORD:?Variable DB_PASSWORD es OBLIGATORIA}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 600000
+  jpa:
+    format-sql: false
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: ${SPRING_EUREKA_URL:?Variable SPRING_EUREKA_URL es OBLIGATORIA}
+    enabled: ${EUREKA_ENABLED:?Variable EUREKA_ENABLED es OBLIGATORIA}
+
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false
+
+logging:
+  level:
+    org.springframework.web: WARN

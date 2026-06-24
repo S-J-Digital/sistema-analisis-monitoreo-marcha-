@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: microservicio-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: microservicio-usuario
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/**
+        - id: microservicio-participante
+          uri: http://localhost:8086
+          predicates:
+            - Path=/api/v1/participante/**
+        - id: microservicio-dato
+          uri: http://localhost:8087
+          predicates:
+            - Path=/api/v1/datoparticipante/**
+        - id: microservicio-patologia
+          uri: http://localhost:8088
+          predicates:
+            - Path=/api/v1/patologia/**
+        - id: microservicio-sennal
+          uri: http://localhost:8089
+          predicates:
+            - Path=/api/v1/sennal/**
+        - id: microservicio-redneuronal
+          uri: http://localhost:8092
+          predicates:
+            - Path=/api/v1/modelo/**
+  config:
+    import: optional:configserver:http://localhost:8888
+
+server:
+  port: 8081
+
+eureka:
+  server:
+    port: 8761
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:${eureka.server.port}/eureka/
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+
