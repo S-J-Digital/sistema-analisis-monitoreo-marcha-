@@ -1,0 +1,121 @@
+# =============================================================
+# .gitignore unificado — Sistema de Análisis de Monitoreo de la Marcha
+# Cubre: Backend (Maven/Spring Boot), Frontend (Vite/React), App Móvil (Android/Gradle)
+# =============================================================
+
+# ---------------------------------------------------------------
+# BACKEND — Maven / Spring Boot
+# ---------------------------------------------------------------
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+HELP.md
+
+### Spring Tool Suite (STS) ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# ---------------------------------------------------------------
+# FRONTEND — Node / Vite / React
+# ---------------------------------------------------------------
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+### Logs ###
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ---------------------------------------------------------------
+# APP MÓVIL — Android / Gradle
+# ---------------------------------------------------------------
+.gradle/
+/build/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+
+# ---------------------------------------------------------------
+# IDEs — IntelliJ IDEA / Android Studio
+# ---------------------------------------------------------------
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### IntelliJ IDEA — archivos específicos a ignorar dentro de .idea ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/caches/
+.idea/shelf/
+.idea/httpRequests/
+.idea/dataSources/
+.idea/dataSources.local.xml
+.idea/sonarlint/
+
+# ---------------------------------------------------------------
+# IDEs — Eclipse / NetBeans / VS Code
+# ---------------------------------------------------------------
+
+### Eclipse ###
+.classpath
+.project
+.settings/
+.factorypath
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+!.vscode/extensions.json
+
+### Visual Studio ###
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ---------------------------------------------------------------
+# SISTEMA OPERATIVO
+# ---------------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------------
+# SEGURIDAD — Variables de entorno y credenciales
+# ---------------------------------------------------------------
+*.env
+.env
+.env.*
+!.env.example
+
+# ---------------------------------------------------------------
+# ARCHIVOS LOCALES — No subir a GitHub
+# ---------------------------------------------------------------
+pendientes.md
