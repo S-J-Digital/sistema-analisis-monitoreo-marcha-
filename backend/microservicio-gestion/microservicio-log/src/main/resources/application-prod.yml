@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: microservicio-log
+  datasource:
+    url: ${LOG_DB_URL:?Variable LOG_DB_URL es OBLIGATORIA}
+    username: ${LOG_DB_USER:?Variable LOG_DB_USER es OBLIGATORIA}
+    password: ${LOG_DB_PASSWORD:?Variable LOG_DB_PASSWORD es OBLIGATORIA}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:?Variable CONFIG_SERVER_URL es OBLIGATORIA}
+  rabbitmq:
+    host: ${RABBITMQ_HOST:?Variable RABBITMQ_HOST es OBLIGATORIA}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:?Variable RABBITMQ_USER es OBLIGATORIA}
+    password: ${RABBITMQ_PASSWORD:?Variable RABBITMQ_PASSWORD es OBLIGATORIA}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:?Variable EUREKA_URL es OBLIGATORIA}
+  instance:
+    prefer-ip-address: true
+
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false
+
+logging:
+  level:
+    root: WARN
+    com.example.log: WARN
