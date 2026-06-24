@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="config">Configuracion</string>
+        <string-array name="frecuencia">
+            <item>0</item>
+            <item>1</item>
+            <item>2</item>
+            <item>3</item>
+            <item>4</item>
+        </string-array>
+
+    <string-array name="acelerometro">
+        <item>2g</item>
+        <item>4g</item>
+        <item>8g</item>
+        <item>16g</item>
+    </string-array>
+
+    <string-array name="giroscopio">
+        <item>250 degrees/sec</item>
+        <item>500 degrees/sec</item>
+        <item>1000 degrees/sec</item>
+        <item>2000 degrees/sec</item>
+    </string-array>
+
+    <string-array name="dispositivos">
+        <item>Joy-Con</item>
+        <item>Dispositivo Móvil</item>
+    </string-array>
+
+    <string-array name="time">
+        <item>30 seg</item>
+        <item>40 seg</item>
+        <item>50 seg</item>
+        <item>60 seg</item>
+    </string-array>
+</resources>

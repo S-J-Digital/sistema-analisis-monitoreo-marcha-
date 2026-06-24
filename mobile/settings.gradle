@@ -1,0 +1,48 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url 'https://jitpack.io' }
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+rootProject.name = "Caminata"
+include ':app'
+include ':core'
+include ':core:database'
+include ':core:model'
+include ':core:ui'
+include ':feature'
+include ':core:ui:principal'
+include ':core:ui:user'
+include ':core:ui:participante'
+
+include ':core:util'
+include ':core:util:utilList'
+include ':core:ui:interfazinsertar'
+include ':core:ui:datos'
+
+
+include ':core:util:user'
+include ':core:util:encriptacion'
+include ':feature:funcionalidadinterfazinsertar'
+include ':core:util:retroceso'
+include ':core:ui:sennales'
+include ':feature:getSensores'
+include ':feature:visualizarFuncionalidades'
+include ':core:util:cache'
+include ':feature:FuncionalidadRecordatorio'
+include ':feature:funcionalidadesBluetooth'
+include ':core:ui:config'
+include ':feature:funcionalidadesConfig'
+include ':core:ui:asignarrol'
+
+include ':feature:enviodatos'
