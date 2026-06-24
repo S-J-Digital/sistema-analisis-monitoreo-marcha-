@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Caminata</string>
+    <string name="BienvenidoUsuer">Bienvenido</string>
+    <string name="textViewdispositivos">Bluetooth</string>
+    <string name="textViewdParticipantes">Participante</string>
+    <string name="textViewDatos">Datos Participante</string>
+    <string name="textViewSennales">Señales</string>
+    <string name="textViewBuscar">Buscar participante</string>
+    <string name="textBuscar">Buscar participante</string>
+
+    <string name="texViewTodos">Ver todos</string>
+    <string name="configuracion">Ajustes</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

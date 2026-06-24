@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="config">Roles</string>
+    <string-array name="Roles">
+        <item>Administrador</item>
+        <item>Médico</item>
+        <item>Paciente</item>
+        <item>Investigador</item>
+        <item>Super Administrador</item>
+    </string-array>
+</resources>
