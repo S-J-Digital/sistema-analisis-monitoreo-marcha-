@@ -9,6 +9,7 @@ import com.example.usuario.core.service.UsuarioService;
 import com.example.usuario.core.serviceController.LoginControllerService;
 import com.example.usuario.util.DescrifradoBase64Android;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,21 +17,13 @@ import org.springframework.stereotype.Service;
 import java.util.logging.Logger;
 
 @Service
+@RequiredArgsConstructor
 public class LoginControllerServiceImpl implements LoginControllerService {
     private final Logger logger = Logger.getLogger(LoginControllerServiceImpl.class.getName());
     private final UsuarioService usuarioService;
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
-
-    @Autowired
-    public LoginControllerServiceImpl(UsuarioService usuarioService, UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder, TokenService tokenService) {
-        this.usuarioService = usuarioService;
-        this.usuarioRepository = usuarioRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.tokenService = tokenService;
-    }
-
     @Override
     public String login(UsuarioLogin usuarioLogin, HttpServletRequest request) throws SearchException {
         Usuario user = usuarioRepository.findByUsernameEquals(usuarioLogin.username()).orElseThrow(() -> new SearchException("No se encontro el usuario especificado"));

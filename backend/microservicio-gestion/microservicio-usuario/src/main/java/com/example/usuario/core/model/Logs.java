@@ -3,6 +3,7 @@ package com.example.usuario.core.model;
 import com.example.usuario.core.dto.LogDto;
 import com.example.usuario.util.Validacion;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -11,6 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -38,21 +40,23 @@ public class Logs {
     @Column(name="user_name")
     private String user_name;
 
-    @Column(name="ip_address",nullable = false)
-    @NotBlank(message = "La IP del usuario no puede ser nullo o vacío")
-    @Size(min = 7,max = 16,message = "La dirección ip debe encontrarse entre 7 y 16 caracteres")
-    private String ip_address;
-
     @Column(name="message",nullable = false)
     @Size(min = 5,max = 255,message = "El mensaje descriptivo debe estar en tre 5 y 255 caracteres")
     @NotBlank(message = "El mensaje descriptivo del log no puede ser nullo o vacío")
     private String message;
 
+    @Column(name="fecha_ejecucion", nullable = false)
+    @NotBlank(message = "La fecha de ejecución no debe ser nula o vacía")
+    private Date fecha_ejecucion;
+
+    @Column(name = "tiempo_ejecucion",nullable = false)
+    @Min(value = 0,message = "El tiempo de ejecución no puede ser negativo")
+    private double tiempo_ejecucion;
+
     public Logs(LogDto logDTO) {
         this.event_date  = LocalDateTime.now().toLocalDate();
         this.log_level = logDTO.getLog_level();
         this.user_name = logDTO.getUser_name();
-        this.ip_address = logDTO.getIp_adress();
         this.message = logDTO.getMessage();
     }
 

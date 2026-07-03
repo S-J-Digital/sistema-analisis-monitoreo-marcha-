@@ -14,6 +14,7 @@ import com.example.usuario.core.serviceController.TokenControllerService;
 import com.example.usuario.util.TokenUtils;
 import com.example.usuario.util.Validacion;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,18 +23,12 @@ import java.util.Date;
 import java.util.logging.Logger;
 
 @Service
+@RequiredArgsConstructor
 public class TokenControllerServiceImpl implements TokenControllerService {
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
     private final RolRepository rolRepository;
     private Logger logger = Logger.getLogger(TokenControllerServiceImpl.class.getName());
-
-    @Autowired
-    public TokenControllerServiceImpl(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder, RolRepository rolRepository) {
-        this.usuarioRepository = usuarioRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.rolRepository = rolRepository;
-    }
 
     @Override
     public boolean validarToken(HttpServletRequest request) {

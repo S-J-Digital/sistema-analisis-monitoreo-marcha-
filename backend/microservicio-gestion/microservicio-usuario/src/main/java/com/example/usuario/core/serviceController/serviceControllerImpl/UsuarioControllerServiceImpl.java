@@ -12,6 +12,7 @@ import com.example.usuario.core.service.LogsService;
 import com.example.usuario.core.service.UsuarioService;
 import com.example.usuario.core.serviceController.UsuarioControllerService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioControllerServiceImpl implements UsuarioControllerService {
     private static Logger logger = Logger.getLogger(UsuarioController.class.getName());
     private final UsuarioService usuarioService;
@@ -28,14 +30,6 @@ public class UsuarioControllerServiceImpl implements UsuarioControllerService {
     private final PasswordEncoder passwordEncoder;
     private final List<Rol> rolesLista;
 
-    public UsuarioControllerServiceImpl(UsuarioService usuarioService, LogsService logsService, RolRepository rolRepository, UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder, List<Rol> rolesLista) {
-        this.usuarioService = usuarioService;
-        this.logsService = logsService;
-        this.rolRepository = rolRepository;
-        this.usuarioRepository = usuarioRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.rolesLista = rolesLista;
-    }
 
     @Override
     public String insertarUsuario(UsuarioDto usuario, HttpServletRequest request) throws SearchException {

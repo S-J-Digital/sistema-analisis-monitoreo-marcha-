@@ -4,6 +4,7 @@ import com.example.usuario.core.service.LogsService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,12 @@ public class ControllerAspecto {
     public void logBeforeController(JoinPoint joinPoint){
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String Token = request.getHeader("Authorization");
+        log.info("Iniciando: " + joinPoint.getSignature().getName());
+    }
+
+    @Around(value = "execution(* com.example.usuario.core.controller.*.(..))")
+    public void logAroundController(JoinPoint joinPoint) {
+        Registro inicio =
         log.info("Iniciando: " + joinPoint.getSignature().getName());
     }
 }
