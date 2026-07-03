@@ -6,6 +6,7 @@ import com.example.usuario.core.serviceController.TokenControllerService;
 import com.example.usuario.core.serviceController.UsuarioControllerService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,19 +18,13 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/v1/token")
+@RequiredArgsConstructor
 public class TokenController {
     private static Logger logger = Logger.getLogger(TokenController.class.getName());
     private final UsuarioService usuarioService;
     private final LogsService logsService;
     private final TokenControllerService tokenControllerService;
     private static final String ACEPTADO = "Aceptado";
-
-    @Autowired
-    public TokenController(UsuarioService usuarioService, LogsService logsService, TokenControllerService tokenControllerService) {
-        this.usuarioService = usuarioService;
-        this.logsService = logsService;
-        this.tokenControllerService = tokenControllerService;
-    }
 
     @GetMapping("/")
     @Operation(summary = "Valida el token del microservicio",description = "Valida el token del microservicio que lo necesite")

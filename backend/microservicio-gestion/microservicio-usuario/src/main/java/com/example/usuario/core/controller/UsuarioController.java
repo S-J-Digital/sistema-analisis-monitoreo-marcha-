@@ -9,6 +9,7 @@ import com.example.usuario.core.serviceController.UsuarioControllerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,19 +20,12 @@ import java.util.logging.Logger;
 @RequestMapping("/api/v1/usuario")
 @Tag(name = "Controlador de usuarios",
         description = "Controlador encargardo de todo lo referente con los usuarios del sistema")
+@RequiredArgsConstructor
 public class UsuarioController {
     private static Logger logger = Logger.getLogger(UsuarioController.class.getName());
     private final UsuarioService usuarioService;
     private final LogsService logsService;
     private final UsuarioControllerService usuarioControllerService;
-    private static final String ACEPTADO = "Aceptado";
-
-    @Autowired
-    public UsuarioController(UsuarioService usuarioService, LogsService logsService, UsuarioControllerService usuarioControllerService) {
-        this.usuarioService = usuarioService;
-        this.logsService = logsService;
-        this.usuarioControllerService = usuarioControllerService;
-    }
 
     @PostMapping("/create")
     @Operation(summary = "Insertar usuario",
