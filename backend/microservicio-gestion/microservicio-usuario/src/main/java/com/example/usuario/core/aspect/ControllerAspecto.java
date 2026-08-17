@@ -28,30 +28,10 @@ public class ControllerAspecto {
         LogsService = logsService;
     }
 
-    @Before(value = "execution(* com.example.usuario.core.controller.UsuarioController.*(..))")
-    public void logBeforeControllerUsuario(JoinPoint joinPoint){
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        String Token = request.getHeader("Authorization");
-        log.info("Iniciando: " + joinPoint.getSignature().getName());
-    }
-
-    @AfterReturning(value = "execution(* com.example.usuario.core.controller.UsuarioController.*(..))",
-            returning = "resultado", argNames = "joinPoint,resultado")
-    public void logAfterControllerUsuario(JoinPoint joinPoint, ResponseEntity<?> resultado) {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        String Token = request.getHeader("Authorization");
-        log.info("Terminado: " + joinPoint.getSignature().getName());
-    }
-
-    @Before(value = "execution(* com.example.usuario.core.controller.LoginController.*(..))")
-    public void logBeforeController(JoinPoint joinPoint){
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        String Token = request.getHeader("Authorization");
-        log.info("Iniciando: " + joinPoint.getSignature().getName());
-    }
-
     @Around(value = "execution(* com.example.usuario.core.controller.*(..))")
     public Object logAroundController(ProceedingJoinPoint joinPoint) throws Throwable {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String Token = request.getHeader("Authorization");
         String method = joinPoint.getSignature().getName();
         long initMilisecond = System.currentTimeMillis();
         try {
@@ -59,9 +39,8 @@ public class ControllerAspecto {
             return resultado;
         } catch (Throwable e) {
             String mensaje = e.getMessage();
-            th
-        }finally {
             long finalMilisecond = System.currentTimeMillis();
+            throw new Exception(mensaje);
         }
     }
 }
