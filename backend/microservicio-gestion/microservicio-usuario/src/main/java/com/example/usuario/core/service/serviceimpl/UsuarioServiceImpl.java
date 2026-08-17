@@ -29,31 +29,24 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void insertarEntity(Usuario usuario) {
-        if(!usuarioRepository.existsByNombre(usuario.getNombre())){
-            usuarioRepository.save(usuario);
-        }
-
+        usuarioRepository.save(usuario);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void modificarUsuario(UsuarioDto usuarioDto, Long id, Rol rol) throws SearchException {
-        if(usuarioRepository.existsById(id)){
-            usuarioDto.setId(id);
-            usuarioRepository.save(new Usuario(usuarioDto,rol,usuarioDto.getContrasenna()));
-        }else{
+        if(!usuarioRepository.existsById(id))
             throw new SearchException("No existe el usuario a modificar");
-        }
+        usuarioDto.setId(id);
+        usuarioRepository.save(new Usuario(usuarioDto,rol,usuarioDto.getContrasenna()));
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void eliminarEntity(Long id) throws SearchException {
-        if(usuarioRepository.existsById(id)){
-            usuarioRepository.deleteById(id);
-        }else{
+        if(!usuarioRepository.existsById(id))
             throw new SearchException("No existe el usuario a eliminar");
-        }
+        usuarioRepository.deleteById(id);
     }
 
     @Override

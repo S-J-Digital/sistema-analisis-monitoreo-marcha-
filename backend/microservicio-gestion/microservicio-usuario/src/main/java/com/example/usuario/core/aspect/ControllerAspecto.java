@@ -3,6 +3,7 @@ package com.example.usuario.core.aspect;
 import com.example.usuario.core.service.LogsService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 @Aspect
@@ -48,9 +50,18 @@ public class ControllerAspecto {
         log.info("Iniciando: " + joinPoint.getSignature().getName());
     }
 
-    @Around(value = "execution(* com.example.usuario.core.controller.*.(..))")
-    public void logAroundController(JoinPoint joinPoint) {
-        Registro inicio =
-        log.info("Iniciando: " + joinPoint.getSignature().getName());
+    @Around(value = "execution(* com.example.usuario.core.controller.*(..))")
+    public Object logAroundController(ProceedingJoinPoint joinPoint) throws Throwable {
+        String method = joinPoint.getSignature().getName();
+        long initMilisecond = System.currentTimeMillis();
+        try {
+            Object resultado = joinPoint.proceed();
+            return resultado;
+        } catch (Throwable e) {
+            String mensaje = e.getMessage();
+            th
+        }finally {
+            long finalMilisecond = System.currentTimeMillis();
+        }
     }
 }
