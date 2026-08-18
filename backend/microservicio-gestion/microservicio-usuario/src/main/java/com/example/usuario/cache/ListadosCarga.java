@@ -1,4 +1,4 @@
-package com.example.usuario.config;
+package com.example.usuario.cache;
 
 import com.example.usuario.core.model.Estado;
 import com.example.usuario.core.model.Rol;
