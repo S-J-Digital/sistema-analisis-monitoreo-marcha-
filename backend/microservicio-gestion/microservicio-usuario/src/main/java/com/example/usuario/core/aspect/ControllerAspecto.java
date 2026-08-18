@@ -21,12 +21,10 @@ import java.util.logging.Logger;
 @Component
 public class ControllerAspecto {
     private final Logger log = Logger.getLogger(this.getClass().getName());
-    private final LogsService LogsService;
     private final LogsService logsService;
 
     @Autowired
-    public ControllerAspecto(LogsService logsService, LogsService logsService) {
-        LogsService = logsService;
+    public ControllerAspecto(LogsService logsService) {
         this.logsService = logsService;
     }
 
@@ -35,18 +33,21 @@ public class ControllerAspecto {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String Token = request.getHeader("Authorization");
         String method = joinPoint.getSignature().getName();
-        long initMilisecond = System.currentTimeMillis();
+        long initMilisecond = System.currentTimeMillis(), finalMilisecond, time;
         try {
             Object resultado = joinPoint.proceed();
+            finalMilisecond = System.currentTimeMillis();
+            time= finalMilisecond - initMilisecond;
             logsService.insertarLog(
-                    request,"Aceptado","Operacion finalizada con éxito",method
+                    request,"Aceptado","Operacion finalizada con éxito",method, ((double) time)
             );
             return resultado;
         } catch (Throwable e) {
             String mensaje = e.getMessage();
-            long finalMilisecond = System.currentTimeMillis();
+            finalMilisecond = System.currentTimeMillis();
+            time= finalMilisecond - initMilisecond;
             logsService.insertarLog(
-                    request,"Aceptado","Operacion finalizada con éxito",method
+                    request,"Rechazado",e.getMessage(),method, ((double) time)
             );
             throw new Exception(mensaje);
         }
