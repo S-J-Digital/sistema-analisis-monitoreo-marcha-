@@ -16,10 +16,10 @@ import org.springframework.stereotype.Service;
 public class LogsServiceImpl implements LogsService {
     private final LogsRepository logsRepository;
     @Override
-    public void insertarLog(HttpServletRequest request, String estado,String mensaje) {
+    public void insertarLog(HttpServletRequest request, String estado,String mensaje,String method) {
         String ip = IpUtils.hostIpV4Http(request);
         String user = UsuarioUtil.Usuario(request);
-        LogDto logDTO = new LogDto(estado,user,ip,mensaje);
+        LogDto logDTO = new LogDto(estado,user,ip,mensaje,method);
         logsRepository.save(new Logs(logDTO));
     }
 }

@@ -22,10 +22,12 @@ import java.util.logging.Logger;
 public class ControllerAspecto {
     private final Logger log = Logger.getLogger(this.getClass().getName());
     private final LogsService LogsService;
+    private final LogsService logsService;
 
     @Autowired
-    public ControllerAspecto(LogsService logsService) {
+    public ControllerAspecto(LogsService logsService, LogsService logsService) {
         LogsService = logsService;
+        this.logsService = logsService;
     }
 
     @Around(value = "execution(* com.example.usuario.core.controller.*(..))")
@@ -36,10 +38,16 @@ public class ControllerAspecto {
         long initMilisecond = System.currentTimeMillis();
         try {
             Object resultado = joinPoint.proceed();
+            logsService.insertarLog(
+                    request,"Aceptado","Operacion finalizada con éxito",method
+            );
             return resultado;
         } catch (Throwable e) {
             String mensaje = e.getMessage();
             long finalMilisecond = System.currentTimeMillis();
+            logsService.insertarLog(
+                    request,"Aceptado","Operacion finalizada con éxito",method
+            );
             throw new Exception(mensaje);
         }
     }

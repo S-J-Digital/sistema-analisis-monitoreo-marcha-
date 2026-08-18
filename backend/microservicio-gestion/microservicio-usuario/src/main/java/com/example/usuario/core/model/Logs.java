@@ -45,19 +45,21 @@ public class Logs {
     @NotBlank(message = "El mensaje descriptivo del log no puede ser nullo o vacío")
     private String message;
 
-    @Column(name="fecha_ejecucion", nullable = false)
-    @NotBlank(message = "La fecha de ejecución no debe ser nula o vacía")
-    private Date fecha_ejecucion;
-
     @Column(name = "tiempo_ejecucion",nullable = false)
     @Min(value = 0,message = "El tiempo de ejecución no puede ser negativo")
     private double tiempo_ejecucion;
+
+    @Column(name="method",nullable = false)
+    @Size(min = 5,max = 255,message = "El método de ejecución debe estar entre 5 y 255 caracteres")
+    @NotBlank(message = "El método de ejecución del log no puede ser nullo o vacío")
+    private String method;
 
     public Logs(LogDto logDTO) {
         this.event_date  = LocalDateTime.now().toLocalDate();
         this.log_level = logDTO.getLog_level();
         this.user_name = logDTO.getUser_name();
         this.message = logDTO.getMessage();
+        this.method = logDTO.getMethod();
     }
 
     @PrePersist
