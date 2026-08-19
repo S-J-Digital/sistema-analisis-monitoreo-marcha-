@@ -1,4 +1,5 @@
-package com.example.usuario.config;
+package com.example.usuario.config.security.common;
+
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
