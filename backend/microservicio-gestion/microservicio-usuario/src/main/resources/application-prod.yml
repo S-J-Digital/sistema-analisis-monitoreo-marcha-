@@ -18,6 +18,9 @@ spring:
   config:
     import: ${SPRING_CONFIG_URL:?Variable SPRING_CONFIG_URL es OBLIGATORIA}
 
+jwt:
+  secreto: ${JWT_SECRETO:?Variable JWT_SECRETO es OBLIGATORIA}
+
 springdoc:
   swagger-ui:
     enabled: false

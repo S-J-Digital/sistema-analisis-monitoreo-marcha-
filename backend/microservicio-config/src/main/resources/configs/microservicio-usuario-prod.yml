@@ -14,6 +14,9 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+jwt:
+  secreto: ${JWT_SECRETO:?Variable JWT_SECRETO es OBLIGATORIA}
+
 springdoc:
   swagger-ui:
     enabled: false

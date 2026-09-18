@@ -14,6 +14,9 @@ spring:
   config:
     import: ""
 
+jwt:
+  secreto: test-secreto-jwt-marchaia
+
 eureka:
   client:
     enabled: false

@@ -10,6 +10,9 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
 
+jwt:
+  secreto: test-secreto-jwt-marchaia
+
 eureka:
   client:
     enabled: false

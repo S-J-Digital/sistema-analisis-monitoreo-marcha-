@@ -16,6 +16,7 @@ import com.example.usuario.util.Validacion;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,13 +31,16 @@ public class TokenControllerServiceImpl implements TokenControllerService {
     private final RolRepository rolRepository;
     private Logger logger = Logger.getLogger(TokenControllerServiceImpl.class.getName());
 
+    @Value("${jwt.secreto}")
+    private String jwtSecreto;
+
     @Override
     public boolean validarToken(HttpServletRequest request) {
         try {
             TokenDto token = TokenUtils.requestToken(request);
             Validacion.validarElemento(token);
             token.setToken(token.getToken().replace("Bearer ", "").replaceAll(" ","").replaceAll("\"",""));
-            Algorithm algorithm = Algorithm.HMAC256("${jwt.secreto}");
+            Algorithm algorithm = Algorithm.HMAC256(jwtSecreto);
             JWTVerifier verifier = JWT.require(algorithm)
                     // specify any specific claim validations
                     .withIssuer("Dianelis")

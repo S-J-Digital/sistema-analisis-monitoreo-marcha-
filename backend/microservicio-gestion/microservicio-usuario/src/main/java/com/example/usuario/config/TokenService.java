@@ -7,6 +7,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import org.springframework.beans.factory.annotation.Value;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -15,9 +16,13 @@ import java.util.logging.Logger;
 @Service
 public class TokenService {
     private final Logger logger = Logger.getLogger(TokenService.class.getName());
+
+    @Value("${jwt.secreto}")
+    private String jwtSecreto;
+
     public String generarToken(Usuario usuario){
         try {
-            Algorithm algorithm = Algorithm.HMAC256("${jwt.secreto}");
+            Algorithm algorithm = Algorithm.HMAC256(jwtSecreto);
             String token = JWT.create()
                     .withIssuer("Dianelis")
                     .withClaim("id",usuario.getId())
@@ -44,7 +49,7 @@ public class TokenService {
             throw new Exception("Token nullo");
         DecodedJWT decodedJWT = null;
         try {
-            Algorithm algorithm = Algorithm.HMAC256("${jwt.secreto}");
+            Algorithm algorithm = Algorithm.HMAC256(jwtSecreto);
             JWTVerifier verifier = JWT.require(algorithm)
                     // specify any specific claim validations
                     .withIssuer("Dianelis")
