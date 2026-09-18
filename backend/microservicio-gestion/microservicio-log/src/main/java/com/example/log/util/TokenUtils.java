@@ -1,4 +1,14 @@
 package com.example.log.util;
+
+// NOTA (2026-09-18): esta clase es una copia de com.example.usuario.util.TokenUtils
+// pegada tal cual en microservicio-log, pero microservicio-log no depende de
+// microservicio-usuario, así que los imports de com.example.usuario.config.TokenService
+// y com.example.usuario.core.dto.TokenDto nunca existieron en este módulo — no compilaba.
+// Nada en microservicio-log la usa (ver pendientes.md, sección "microservicio-log — módulo
+// fantasma"). Se comenta el cuerpo completo para no romper el build hasta que se decida
+// si este módulo se termina de implementar o se elimina.
+
+/*
 import com.example.usuario.config.TokenService;
 import com.example.usuario.core.dto.TokenDto;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,3 +46,4 @@ public class TokenUtils {
         }
     }
 }
+*/
