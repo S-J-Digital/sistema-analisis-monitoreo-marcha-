@@ -26,4 +26,13 @@ export default defineConfig([
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
   },
+  {
+    // Componentes generados por la CLI de shadcn/ui: exportan a propósito el
+    // componente junto a sus helpers de variantes (p. ej. `buttonVariants`),
+    // así que no aplica la regla de Fast Refresh que exige un solo export.
+    files: ['src/components/ui/**/*.jsx'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
+    },
+  },
 ])
